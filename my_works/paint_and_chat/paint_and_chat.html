@@ -1,0 +1,80 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <title>畫話框</title>
+  <script type="text/javascript" src="http://cdn.peerjs.com/0.3/peer.min.js"></script>
+  <script type="text/javascript" src="./peer.js"></script>
+  <link rel="stylesheet" type="text/css" href="./pnt.css">
+</head>
+<body onmouseup="paint_now.mouse_up()">
+<div>
+  <!-- paint -->
+  <div id="paint">
+    <!-- canvas -->
+    <div id="canvas" class="black" oncontextmenu="return false">
+      <canvas id="mix_area" width="1280px" height="720px" style="background-color:white;"></canvas>
+      <canvas id="else_paint_area" width="1280px" height="720px"></canvas>
+      <canvas id="my_paint_area" width="1280px" height="720px" onmousedown="paint_now.mouse_down(event)"></canvas>
+    </div>
+
+    <div id="split_line1" class="black"></div>
+    <!-- tools -->
+    <div id="tools" class="black">
+      <!-- paint tools -->
+      <div id="canvas_tools">
+        <!-- 調色 -->
+        <div id="pen_color">
+          <div><div>紅(R)</div><input id="red" type="range" min="0" max="255" onchange="paint_now.color_bar()"><input id="vred" type="number" min="0" max="255" onchange="paint_now.color_number()"></div>
+          <div><div>綠(G)</div><input id="green" type="range" min="0" max="255" onchange="paint_now.color_bar()"><input id="vgreen" type="number" min="0" max="255" onchange="paint_now.color_number()"></div>
+          <div><div>藍(B)</div><input id="blue" type="range" min="0" max="255" onchange="paint_now.color_bar()"><input id="vblue" type="number" min="0" max="255" onchange="paint_now.color_number()"></div>
+        </div>
+        <div id="pen_size"><div>筆刷大小</div><input id="line_width" type="number" min="1" max="99" onchange="paint_now.line_width()"></div>
+        <div id="canvas_special">
+          <!-- 下載 -->
+          <a id="save" href="#" download="一張畫布.png" disable></a>
+          <input type="button" value="模式：筆" disabled="true">
+          <!-- 清理畫布 -->
+          <input type="button" value="插入圖片" onclick="paint_now.insert_pic()">
+          <input type="button" value="清理畫布" onclick="paint_now.question_y_or_n('確定要清理畫布？', 'paint_now.clean_canvas(mix_area)')">
+          <input type="button" value="插入圖案" onclick="paint_now.insert_figure()">
+          <input type="button" value="輸入文字" onclick="paint_now.insert_text()">
+          <input type="button" onclick="paint_now.download_pic('save'); save.click()" value="儲存畫布">
+        </div>
+      </div>
+
+      <div id="split_line2" class="black"></div>
+      <!-- peer seed -->
+      <div id="seed_tool">
+        你的種子碼：<span id="my_seed"></span><br>
+        <input type="button" value="連接他的種子碼↓" id="connect" onclick="chat_now.connect_to_a_peer()"><br>
+        <input type="text" id="else_seed" placeholder="他的種子碼">
+      </div>
+    </div>
+  </div>
+
+  <!-- chat -->
+  <div id="chat">
+    <!-- chat box -->
+    <div id="chat_box" name="chat_box"></div> 
+
+    <div id="split_line1" class="black"></div>
+    <!-- chat input -->
+    <div id="chat_input">
+      <!-- chat tools -->
+      <div>
+        <input type="button" value="你是你，他是誰" onclick="" disabled="true">
+        <input type="button" value="傳送圖片" onclick="chat_now.send_pic()">
+        <input type="button" value="清除對話" onclick="paint_now.question_y_or_n('確定要清除對話？', 'chat_now.clean_chat_box()')">
+      </div>
+      <!-- chat typing area -->
+      <textarea placeholder="想發送的訊息" id="msg" onkeydown="chat_now.enter_to_send(event,true)" onkeyup="chat_now.enter_to_send(event)"></textarea>
+      <input type="button" value="發送訊息" id="send" onclick="chat_now.send_msg()">
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="chat_peer.js"></script>
+<script type="text/javascript" src="paint.js"></script>
+<script type="text/javascript" src="paint_insert.js"></script>
+</html>

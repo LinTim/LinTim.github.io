@@ -1,0 +1,166 @@
+<html>
+<head>
+<title>Sudoku Solver</title>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td {
+  width: 11%;
+  height: 11%;
+  font-size: 36;
+}
+table tr:nth-child(-n+3) td:nth-child(n+4):not(:nth-child(n+7)){
+  background-color: #777;
+}
+table tr:nth-child(n+4):not(:nth-child(n+7)) td:nth-child(n):not(:nth-child(4)):not(:nth-child(5)):not(:nth-child(6)){
+  background-color: #777;
+}
+table tr:nth-child(n+7) td:nth-child(n+4):not(:nth-child(n+7)){
+  background-color: #777;
+}
+button {
+  font-size: 24;
+}
+</style>
+
+<script language="JavaScript" src="sudoku_solver.js"></script>
+</head>
+<body>
+
+<div style="height:10%; text-align:center; font-size:32">Sudoku Solver</div>
+
+<div style="width:10%; height:90%; float:left"></div>
+
+<div style="width:10%; float:left">
+  <div style="width:100%; height:5%; float:right"></div>
+  <div style="width:100%; height:7%; float:right"><input id="input_array" type="text" style="width:100%; height:100%"></div>
+  <div style="height:7%; float:right"><button style="width:100%; height:100%" onclick="input_array('input_array')">Input>></button></div>
+
+  <div style="width:100%; height:42%; float:right">
+  <div style="width:100%; height:20%; float:right"></div>
+  <button onclick="document.getElementById('input_array').value = '053000260100306009709401503021040930000167000075090140506702308300504002018000750'; alert('The example array:\n053000260100306009709401503021040930000167000075090140506702308300504002018000750')">Get an example array to input</button>
+  <p>The array is left to right then top to bottom.</p>
+  </div>
+  <div style="height:7%; float:right"><button style="width:100%; height:100%" onclick="output_array('output_array')">Output<<</button></div>
+  <div style="width:100%; height:7%; float:right"><input id="output_array" type="text" style="width:100%; height:100%"></div>
+</div>
+
+<div style="width:60%; float:left">
+
+<div align="center">
+<div style="width:100%; height:85%;">
+<table id="t0" style="width:80%;height:95%">
+  <tr>
+    <td id="11" align="center" onclick="choose_number(this)"></td>
+    <td id="12" align="center" onclick="choose_number(this)"></td>
+    <td id="13" align="center" onclick="choose_number(this)"></td>
+    <td id="14" align="center" onclick="choose_number(this)"></td>
+    <td id="15" align="center" onclick="choose_number(this)"></td>
+    <td id="16" align="center" onclick="choose_number(this)"></td>
+    <td id="17" align="center" onclick="choose_number(this)"></td>
+    <td id="18" align="center" onclick="choose_number(this)"></td>
+    <td id="19" align="center" onclick="choose_number(this)"></td>
+  </tr>
+  <tr>
+    <td id="21" align="center" onclick="choose_number(this)"></td>
+    <td id="22" align="center" onclick="choose_number(this)"></td>
+    <td id="23" align="center" onclick="choose_number(this)"></td>
+    <td id="24" align="center" onclick="choose_number(this)"></td>
+    <td id="25" align="center" onclick="choose_number(this)"></td>
+    <td id="26" align="center" onclick="choose_number(this)"></td>
+    <td id="27" align="center" onclick="choose_number(this)"></td>
+    <td id="28" align="center" onclick="choose_number(this)"></td>
+    <td id="29" align="center" onclick="choose_number(this)"></td>
+  </tr>
+  <tr>
+    <td id="31" align="center" onclick="choose_number(this)"></td>
+    <td id="32" align="center" onclick="choose_number(this)"></td>
+    <td id="33" align="center" onclick="choose_number(this)"></td>
+    <td id="34" align="center" onclick="choose_number(this)"></td>
+    <td id="35" align="center" onclick="choose_number(this)"></td>
+    <td id="36" align="center" onclick="choose_number(this)"></td>
+    <td id="37" align="center" onclick="choose_number(this)"></td>
+    <td id="38" align="center" onclick="choose_number(this)"></td>
+    <td id="39" align="center" onclick="choose_number(this)"></td>
+  </tr>
+  <tr>
+    <td id="41" align="center" onclick="choose_number(this)"></td>
+    <td id="42" align="center" onclick="choose_number(this)"></td>
+    <td id="43" align="center" onclick="choose_number(this)"></td>
+    <td id="44" align="center" onclick="choose_number(this)"></td>
+    <td id="45" align="center" onclick="choose_number(this)"></td>
+    <td id="46" align="center" onclick="choose_number(this)"></td>
+    <td id="47" align="center" onclick="choose_number(this)"></td>
+    <td id="48" align="center" onclick="choose_number(this)"></td>
+    <td id="49" align="center" onclick="choose_number(this)"></td>
+  </tr>
+  <tr>
+    <td id="51" align="center" onclick="choose_number(this)"></td>
+    <td id="52" align="center" onclick="choose_number(this)"></td>
+    <td id="53" align="center" onclick="choose_number(this)"></td>
+    <td id="54" align="center" onclick="choose_number(this)"></td>
+    <td id="55" align="center" onclick="choose_number(this)"></td>
+    <td id="56" align="center" onclick="choose_number(this)"></td>
+    <td id="57" align="center" onclick="choose_number(this)"></td>
+    <td id="58" align="center" onclick="choose_number(this)"></td>
+    <td id="59" align="center" onclick="choose_number(this)"></td>
+  </tr>
+  <tr>
+    <td id="61" align="center" onclick="choose_number(this)"></td>
+    <td id="62" align="center" onclick="choose_number(this)"></td>
+    <td id="63" align="center" onclick="choose_number(this)"></td>
+    <td id="64" align="center" onclick="choose_number(this)"></td>
+    <td id="65" align="center" onclick="choose_number(this)"></td>
+    <td id="66" align="center" onclick="choose_number(this)"></td>
+    <td id="67" align="center" onclick="choose_number(this)"></td>
+    <td id="68" align="center" onclick="choose_number(this)"></td>
+    <td id="69" align="center" onclick="choose_number(this)"></td>
+  </tr>
+  <tr>
+    <td id="71" align="center" onclick="choose_number(this)"></td>
+    <td id="72" align="center" onclick="choose_number(this)"></td>
+    <td id="73" align="center" onclick="choose_number(this)"></td>
+    <td id="74" align="center" onclick="choose_number(this)"></td>
+    <td id="75" align="center" onclick="choose_number(this)"></td>
+    <td id="76" align="center" onclick="choose_number(this)"></td>
+    <td id="77" align="center" onclick="choose_number(this)"></td>
+    <td id="78" align="center" onclick="choose_number(this)"></td>
+    <td id="79" align="center" onclick="choose_number(this)"></td>
+  </tr>
+  <tr>
+    <td id="81" align="center" onclick="choose_number(this)"></td>
+    <td id="82" align="center" onclick="choose_number(this)"></td>
+    <td id="83" align="center" onclick="choose_number(this)"></td>
+    <td id="84" align="center" onclick="choose_number(this)"></td>
+    <td id="85" align="center" onclick="choose_number(this)"></td>
+    <td id="86" align="center" onclick="choose_number(this)"></td>
+    <td id="87" align="center" onclick="choose_number(this)"></td>
+    <td id="88" align="center" onclick="choose_number(this)"></td>
+    <td id="89" align="center" onclick="choose_number(this)"></td>
+  </tr>
+  <tr>
+    <td id="91" align="center" onclick="choose_number(this)"></td>
+    <td id="92" align="center" onclick="choose_number(this)"></td>
+    <td id="93" align="center" onclick="choose_number(this)"></td>
+    <td id="94" align="center" onclick="choose_number(this)"></td>
+    <td id="95" align="center" onclick="choose_number(this)"></td>
+    <td id="96" align="center" onclick="choose_number(this)"></td>
+    <td id="97" align="center" onclick="choose_number(this)"></td>
+    <td id="98" align="center" onclick="choose_number(this)"></td>
+    <td id="99" align="center" onclick="choose_number(this)"></td>
+  </tr>
+</table>
+</div>
+
+<div>
+<button onclick="run_solver(false)">Solve it!</button>
+<button onclick="run_solver(true)">Solve it step by step</button>
+<button onclick="check_answer()">Check the answer!</button>
+</div>
+
+</div>
+
+</body>
+</html> 

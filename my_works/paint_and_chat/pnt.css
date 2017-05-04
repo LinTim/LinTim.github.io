@@ -1,0 +1,187 @@
+@media only screen and (max-width: 1920px) {
+  body, input, textarea {
+    font-size: 22;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  body, input, textarea {
+    font-size: 20;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  body, input, textarea {
+    font-size: 18;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  body, input, textarea {
+    font-size: 16;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  body, input, textarea {
+    font-size: 14;
+  }
+}
+
+body {
+  background-color: black;
+}
+div {
+  background-color: white;
+  float: left;
+}
+input {
+  float: left;
+}
+canvas {
+  position: absolute;
+  width: 72.5%;
+  height: 83%;
+  top: 1%;
+  left: 0.5%;
+}
+
+.black {
+  background-color: black;
+}
+
+/*left side*/
+#paint {
+  width: 74%;
+  height: 100%;
+  background-color: black;
+}
+
+#canvas {
+  width: 100%;
+  height: 85%;
+}
+
+#split_line1 {
+  width: 100%;
+  height: 1%;
+}
+
+/*tools*/
+#tools {
+  width: 100%;
+  height: 14%;
+}
+/*canvas_tools*/
+#canvas_tools {
+  width: 64%;
+  height: 100%;
+  text-align: center;
+}
+/*color*/
+#pen_color {
+  width: 35%;
+  height: 100%;
+}
+#pen_color div div {
+  width: 21%;
+  height: 30%;
+}
+#pen_color div + input {
+  width: 45%;
+  height: 28%;
+}
+#pen_color div + input + input {
+  width: 22%;
+  height: 30%;
+}
+/*size*/
+#pen_size {
+  width: 20%;
+}
+#pen_size div {
+  width: 65%;
+}
+#pen_size input {
+  width: 34%;
+}
+/*canvas special*/
+#canvas_special {
+  width: 45%;
+  height: 100%;
+}
+#canvas_special input {
+  width: 33.3%;
+  height: 50%;
+}
+
+#split_line2 {
+  width: 1%;
+  height: 100%;
+}
+
+/*seed tool*/
+#seed_tool {
+  width: 34%;
+  height: 100%;
+}
+#else_seed {
+  width: 100%;
+}
+
+
+/*right side*/
+#chat {
+  width: 26%;
+  height: 100%;
+}
+#chat_box {
+  width: 100%;
+  height: 76%;
+  overflow: auto;
+  word-break: break-all;
+}
+#chat_input {
+  width: 100%;
+  height: 22%;
+}
+#chat_input div {
+  width: 100%;
+  height: 20%;
+}
+#chat_input div input:first-child {
+  width: 40%;
+  height: 100%;
+}
+#chat_input div input:nth-child(n+2) {
+  width: 30%;
+  height: 100%;
+}
+#chat_input textarea {
+  width: 100%;
+  height: 80%;
+  overflow: auto;
+}
+#chat_input > input {
+  position: absolute;
+  right: 0.5%;
+  bottom: 1%;
+}
+
+
+/*question div*/
+.question_div {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  border: 1px solid black;
+}
+.question_div div {
+  text-align: center;
+  width: 100%;
+  height: 50%;
+}
+.question_div div input {
+  position: relative;
+  text-align: center;
+  width: 40%;
+  height: 60%;
+  left: 10%;
+  top: 20%;
+}
