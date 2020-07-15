@@ -22,9 +22,7 @@
       myOnresizeList.forEach(cur => cur());
       resizeBigTitle();
     }
-    window.onload = () => {
-      resizeBigTitle();
-    }
+    window.onload = () => resizeBigTitle();
 
     function resizeIframe(obj, baseWidth, baseHeight) {
       var targetWidth = document.body.clientWidth - document.getElementById('myPosts').offsetLeft - 20;

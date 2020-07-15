@@ -7,6 +7,24 @@
   <link rel="icon" type="image/gif" href="LT_icon.gif">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="style.css" type="text/css">
+  <script>
+    function resizeBigTitle() {
+      if (document.body.clientWidth < 452) {
+        document.getElementById('bigTitle').style.fontSize = '50px';
+        document.getElementById('subTitle').style.fontSize = '20px';
+        document.getElementById('myApology').style.fontSize = '30px';
+      }
+      else if (document.body.clientWidth < 752)
+        document.getElementById('bigTitle').style.fontSize = '70px';
+      else {
+        document.getElementById('bigTitle').style.fontSize = '';
+        document.getElementById('subTitle').style.fontSize = '';
+        document.getElementById('myApology').style.fontSize = '';
+      }
+    }
+
+    window.onresize = window.onload = () => resizeBigTitle();
+  </script>
   <title>自己做一個！</title>
 </head>
 
@@ -15,7 +33,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="display-1">自己做一個！
+          <h1 class="display-1" id="bigTitle">自己做一個！
             <br> </h1>
         </div>
       </div>
@@ -41,7 +59,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h3 class="text-right">覺得有趣？試試看自己做一個吧！</h3>
+          <h3 class="text-right" id="subTitle">覺得有趣？試試看自己做一個吧！</h3>
         </div>
       </div>
     </div>
@@ -58,7 +76,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="">　　出於我手之事物，孤陋簡寡請見諒。</h1>
+          <h1 class="" id="myApology">　　出於我手之事物，孤陋簡寡請見諒。</h1>
         </div>
       </div>
     </div>
