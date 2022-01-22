@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/gif" href="LT_icon.gif">
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <script>
+    function resizeBigTitle() {
+      if (document.body.clientWidth < 452)
+        document.getElementById('bigTitle').style.fontSize = '50px';
+      else if (document.body.clientWidth < 752)
+        document.getElementById('bigTitle').style.fontSize = '70px';
+      else
+        document.getElementById('bigTitle').style.fontSize = '';
+    }
+
+    var myOnresizeList = []
+    window.onresize = () => {
+      myOnresizeList.forEach(cur => cur());
+      resizeBigTitle();
+    }
+    window.onload = () => resizeBigTitle();
+
+    function resizeIframe(obj, baseWidth, baseHeight) {
+      var targetWidth = document.body.clientWidth - document.getElementById('myPosts').offsetLeft - 20;
+      if (targetWidth < baseWidth) {
+        obj.width = targetWidth;
+        obj.height = baseHeight * targetWidth / baseWidth;
+      }
+      else {
+        obj.width = baseWidth;
+        obj.height = baseHeight;
+      }
+
+      if (!obj.inResizeList) {
+        obj.inResizeList = true;
+        myOnresizeList.push(() => resizeIframe(obj, baseWidth, baseHeight));
+      }
+    }
+  </script>
+  <title>自己做一個！</title>
+</head>
+
+<body class="">
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="display-1" id="bigTitle">自己做一個！</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-info py-2">
+    <div class="container">
+      <div class="row">
+        <div class="bg-inverse col-md-4 p-0">
+          <a href="./about.html" class="btn btn-outline-primary w-100">
+            <h1 class="bg-info text-center my-1 text-gray-dark">關於</h1>
+          </a>
+        </div>
+        <div class="bg-inverse col-md-4 p-0">
+          <a href="./index.html" class="btn btn-outline-primary w-100">
+            <h1 class="bg-info text-center my-1 text-gray-dark">作品區</h1>
+          </a>
+        </div>
+        <div class="col-md-4 p-0 bg-primary">
+          <a href="./tools.html" class="btn btn-outline-primary w-100">
+            <h1 class="bg-info text-center my-1 text-gray-dark">工具區</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-right">我做的一些工具</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <hr class=""> </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <!--my works-->
+    <div class="container" id="myPosts">
+      <div class="row">
+        <!--文章分隔-->
+        <div class="col-md-12">
+          <!--title-->
+          <div class="row">
+            <div class="col-md-12">
+              <h1 class="">網頁應用程式</h1>
+            </div>
+          </div>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                    <a href="./my_works/LetMeChooseForYou/index.html" target="_blank">簡易隨機抽選工具</a>
+                    (說明: 幫你從 1~N 或 一個逗點分隔陣列中 每次任意抽取一個出來)
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <hr class="my-5">
+      <!--分隔線-->
+    </div>
+    <div class="bg-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center py-1 my-0 text-white">Tim Lin</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div onclick="window.scrollTo(0,0)" style="cursor:pointer;position: fixed;bottom: 10px;right:10px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:60px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">
+    TOP↑
+  </div>
+</body>
+
+</html>

@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/gif" href="LT_icon.gif">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="style.css" type="text/css">
   <script>
     function resizeBigTitle() {
@@ -57,16 +56,19 @@
   <div class="bg-info py-2">
     <div class="container">
       <div class="row">
-        <div class="bg-inverse col-md-6 p-0">
+        <div class="bg-inverse col-md-4 p-0">
           <a href="./about.html" class="btn btn-outline-primary w-100">
             <h1 class="bg-info text-center my-1 text-gray-dark">關於</h1>
           </a>
         </div>
-        <div class="col-md-6 p-0 bg-primary">
+        <div class="col-md-4 p-0 bg-primary">
           <a href="./index.html" class="btn btn-outline-primary w-100">
-            <h1 class="bg-info text-center my-1 text-gray-dark">
-              <span style="color: inherit; font-family: inherit; font-size: 2.5rem;">作品區</span>
-            </h1>
+            <h1 class="bg-info text-center my-1 text-gray-dark">作品區</h1>
+          </a>
+        </div>
+        <div class="bg-inverse col-md-4 p-0">
+          <a href="./tools.html" class="btn btn-outline-primary w-100">
+            <h1 class="bg-info text-center my-1 text-gray-dark">工具區</h1>
           </a>
         </div>
       </div>
@@ -108,8 +110,8 @@
           <!--content-->
           <div class="row">
             <div class="col-md-12">
-              <iframe src="https://www.youtube-nocookie.com/embed/P7KesZVZIYk?rel=0&amp;showinfo=0" allowfullscreen onload="resizeIframe(this, 853, 480)"></iframe>
- </div>
+              <iframe src="https://www.youtube-nocookie.com/embed/P7KesZVZIYk" allowfullscreen="true" onload="resizeIframe(this, 853, 480)"></iframe>
+            </div>
           </div>
         </div>
         <div class="col-md-12">
@@ -133,7 +135,7 @@
           <!--content-->
           <div class="row">
             <div class="col-md-12">
-              <img class="center-block img-fluid d-block" src="https://i.ytimg.com/vi/CDzUP9KHJGE/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&amp;rs=AOn4CLAcCgM1V7Gq-DeMrovKirFivAxqGw"> </div>
+              <img class="center-block img-fluid d-block" src="https://i.ytimg.com/vi/CDzUP9KHJGE/hqdefault.jpg"> </div>
           </div>
         </div>
         <div class="col-md-12">
@@ -160,7 +162,8 @@
               <img class="center-block img-fluid d-block" src="my_works\cg_project4\cg_project4_1.jpg">
               <img class="center-block img-fluid d-block" src="my_works\cg_project4\cg_project4_2.jpg">
               <img class="center-block img-fluid d-block" src="my_works\cg_project4\cg_project4_3.jpg">
-              <iframe src="https://www.youtube-nocookie.com/embed/VblaP4GZ_XU?rel=0" allowfullscreen onload="resizeIframe(this, 853, 480)"></iframe> </div>
+              <iframe src="https://www.youtube-nocookie.com/embed/VblaP4GZ_XU" allowfullscreen="true" onload="resizeIframe(this, 853, 480)"></iframe>
+            </div>
           </div>
         </div>
         <div class="col-md-12">
@@ -381,13 +384,9 @@
         </div>
       </div>
     </div>
-    <div class="py-0">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <hr class=""> </div>
-        </div>
-      </div>
+    <div class="col-md-12">
+      <hr class="my-5">
+      <!--分隔線-->
     </div>
     <div class="bg-info">
       <div class="container">
@@ -398,9 +397,9 @@
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
+  </div>
+  <div onclick="window.scrollTo(0,0)" style="cursor:pointer;position: fixed;bottom: 10px;right:10px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:60px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">
+    TOP↑
   </div>
 </body>
 
