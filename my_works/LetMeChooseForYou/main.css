@@ -1,0 +1,12 @@
+
+.fullWidth {
+    text-align: center;
+    width: 100%;
+}
+
+div.baseDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

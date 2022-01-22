@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+    <div class="baseDiv">
+        <p id="haveNum">有哪些可以抽 (剩餘數量xx)</p>
+        <div class="fullWidth">
+            <select id="waitList" class="fullWidth" size="5">
+            </select>
+        </div>
+        <div class="fullWidth" style="border: 1px solid black;"></div>
+        <button id="theButton">
+            <h3>隨機抽取一個！</h3>
+        </button>
+        <div class="fullWidth">
+            <h1 id="result">可能選到什麼呢~</h1>
+        </div>
+        <div class="fullWidth" style="border: 1px solid black;"></div>
+        <p id="pickedNum">抽過的紀錄 (數量xx)</p>
+        <div class="fullWidth">
+            <select id="doneList" class="fullWidth" size="5">
+            </select>
+        </div>
+    </div>
+</body>
+<!-- 最後再載入 js，由 js 控制後續改變 -->
+<script type="text/javascript" charset="UTF-8" src="main.js"></script>
+<script type="text/javascript" charset="UTF-8">
+    main();
+</script>
+
+</html>
