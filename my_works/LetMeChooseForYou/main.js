@@ -26,10 +26,30 @@ function setRem() {
 setRem();
 window.onresize = setRem;  // 監聽螢幕變化
 
+// 更新樣式
+function updateStyle(styleType) {
+    if (!styleType) {
+        return;
+    }
+
+    let setBGColor = (element, colorStr) => element.style.backgroundColor = colorStr;
+
+    // 目前只有多一種樣式
+    setBGColor(document.body, "#DC143C");
+    setBGColor(document.getElementById("waitList"), "rgb(196, 173, 128)");
+    setBGColor(document.getElementById("theButton"), "gold");
+    setBGColor(document.getElementById("result"), "#FF0000");
+    setBGColor(document.getElementById("doneList"), "rgb(196, 173, 128)");
+};
+
 // 隨機抽取的主程式
 function main() {
     const urlParams = new URLSearchParams(window.location.search);
 
+    // 更新樣式
+    updateStyle(urlParams.get("style"));
+
+    // 要抽選的選項們
     let opts = urlParams.get("opts");
     opts = opts ? opts.split(",") : [];
 
@@ -111,7 +131,7 @@ function main() {
             }
             else {
                 theButtonElement.disabled = false;
-                resultElement.innerText = "=>" + resultElement.innerText + "<="
+                resultElement.innerText = "~=>" + resultElement.innerText + "<=~"
                 var optElement = waitListElement.selectedOptions[0].cloneNode(true);
                 !canRepeat && waitListElement.remove(randNum);
                 doneListElement.appendChild(optElement);

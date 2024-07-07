@@ -24,7 +24,6 @@ function set_number(element, num) {
 ////////////////////////////////////////////////////////////
 function sudoku_solver() {
   this.where_it_from_stats = false;
-  this.idle_times_limit = 1;
 
   this._arr = [];
 };
@@ -66,7 +65,6 @@ sudoku_solver.prototype.solve_it = function () {
   // if solved then return
   if (this.check_answer(true)) { return true; }
   // Replace "true" by "false" if the number repeats on row, column, and the block.
-  var idle_times = 0;
   var old_arr;
   while (true) {
     // ===== Level 1 =====
@@ -181,24 +179,41 @@ sudoku_solver.prototype.solve_it = function () {
       });
     }
 
-    // todo: check if this is necessary
-    if (old_arr === this._arr.toString()) { idle_times++; console.log("idletimes", idle_times); }
-    if (idle_times >= this.idle_times_limit) { this.is_idle = true; return true; }
+    // if same as old, set idle and return true
+    if (old_arr === this._arr.toString()) { this.is_idle = true; return true; }
   }
 };
 
+// trail and error
 sudoku_solver.prototype.do_guess = function () {
-  // trail and error
-  for (var row = 0; row < 9; row++) {
-    for (var column = 0; column < 9; column++) {
-      this._arr[row][column];
-    }
-  }
-  this._arr.forEach((row, i) => {
-    row.forEach((col, j) => {
-      typeof col === "object" && col.reduce(this._sum) === 2 && console.log("loc", i, j);
+  // copy data
+  let oriData = JSON.parse(JSON.stringify(this._arr));
+
+  this.guessingCount++;
+
+  this._arr.some((row, i) => {
+    return row.some((col, j) => {
+      if (typeof col === "object" && col.reduce(this._sum) === 2) {
+        let temp = [];
+        col.forEach((c, i) => c && temp.push(i));
+        col[temp[0]] = false;
+        this.guessDepth++;
+        console.log("method: guess(L" + this.guessDepth + ") (row:" + (i + 1) + ", column:" + (j + 1) + ") is " + (temp[1] + 1));
+        run_solver();
+        let isRight = this.check_now_step();
+        console.log("method: guess(L".concat(this.guessDepth, ") ", isRight ? "right" : "wrong", "! (row:", i + 1, ", column:", j + 1, ") is ", temp[isRight ? 1 : 0] + 1));
+        this.guessDepth--;
+        if (!isRight) {
+          oriData[i][j][temp[1]] = false;
+          this._arr = oriData;
+          run_solver();
+        }
+        return true;
+      }
     });
   });
+
+  this.guessingCount--;
 };
 
 sudoku_solver.prototype.write_answer = function () {
@@ -237,7 +252,7 @@ sudoku_solver.prototype.check_answer = function (isSolving) {
   for (var row = 0; row < 9; row++) {
     var product = 1;
     for (var column = 0; column < 9; column++) {
-      if (typeof this._arr[row][column] === "object") { return 0; }
+      if (typeof this._arr[row][column] === "object") { return; }
       product *= this._arr[row][column];
     }
     if (product !== 362880) { return; }
@@ -266,6 +281,51 @@ sudoku_solver.prototype.check_answer = function (isSolving) {
   return true;
 };
 
+// check now step is no problem
+sudoku_solver.prototype.check_now_step = function () {
+  let check_array = [];
+  // check row
+  for (var row = 0; row < 9; row++) {
+    check_array.length = 0;
+    for (var column = 0; column < 9; column++) {
+      if (typeof this._arr[row][column] === "object") { continue; }
+      if (check_array[this._arr[row][column]]) {
+        return;
+      } else {
+        check_array[this._arr[row][column]] = true;
+      }
+    }
+  }
+  // check column
+  for (var column = 0; column < 9; column++) {
+    check_array.length = 0;
+    for (var row = 0; row < 9; row++) {
+      if (check_array[this._arr[row][column]]) {
+        return;
+      } else {
+        check_array[this._arr[row][column]] = true;
+      }
+    }
+  }
+  // check block
+  for (var block_row = 0; block_row < 9; block_row += 3) {
+    for (var block_column = 0; block_column < 9; block_column += 3) {
+      check_array.length = 0;
+      for (var row = 0; row < 3; row++) {
+        for (var column = 0; column < 3; column++) {
+          if (check_array[this._arr[row + block_row][column + block_column]]) {
+            return;
+          } else {
+            check_array[this._arr[row + block_row][column + block_column]] = true;
+          }
+        }
+      }
+    }
+  }
+  // Great!
+  return true;
+};
+
 ////////////////////////////////////////////////////////////
 ////////// main function
 ////////////////////////////////////////////////////////////
@@ -280,11 +340,18 @@ function run_solver(using_step) {
     solving.add_array();
     solving.full_space();
     solving.isChanged = false;
+    solving.guessingCount = 0;
+    solving.guessDepth = 0;
   }
   do { var is_end = solving.solve_it(); } while (!using_step && !is_end)
   solving.write_answer();
-  solving.is_idle && solving.do_guess(using_step);
-  using_step || (solving.check_answer(true) ? alert("It's right!") : alert("Something's WRONG!"));
+  if (!using_step && solving.is_idle) {
+    solving.do_guess();
+  }
+  if (solving.guessingCount) {
+    return;
+  }
+  using_step || (solving.check_answer(true) || alert("Something's WRONG!"));
 };
 
 function check_answer() {

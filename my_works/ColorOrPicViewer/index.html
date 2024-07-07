@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>顏色或圖片檢視工具</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+
+<body>
+    <div class="baseDiv">
+        <form id="mainForm" style="border: 1px solid gray;" action="./index.html" method="GET">
+            <div class="fullWidth" style="background-color: white;">
+                <div>
+                    <!-- <input type="radio" id="huey" name="drone" value="huey" checked /> -->
+                    純色<input type="color" id="favcolor" value="#ffff00" autofocus name="color">
+                </div>
+                <div>
+                    <form action="" enctype="multipart/form-data">
+                        圖檔：<input type="file" id="imgUploade" accept="image/gif, image/jpeg, image/png">
+                     </form>
+                </div>
+
+                <div>　</div>
+                <div>
+                    <input id="fullScreenBtn" type="button" value="進入全螢幕">
+                </div>
+                <input type="submit" value="送出">
+                <input id="hiddenBtn" type="button" value="隱藏">
+            </div>
+        </form>
+        <img id="img" class="fullWidth" src="#" hidden>
+    </div>
+</body>
+<!-- 最後再載入 js，由 js 控制後續改變 -->
+<script type="text/javascript" charset="UTF-8" src="main.js"></script>
+<script type="text/javascript" charset="UTF-8">
+    main();
+</script>
+
+</html>
